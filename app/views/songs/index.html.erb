@@ -1,6 +1,16 @@
+
+<%= form_tag songs_upload_path,  multipart: true do  %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Upload file" %>
+<% end %>
+
 <ul>
 <% @songs.each do |song| %>
-  <li><%= display_artist(song) %> - <%= link_to song.title, song_path(song) %></li>
+  <% if !song.artist_name.blank? %>
+    <li><%= display_artist(song) %> - <%= link_to song.title, song_path(song) %></li>
+  <% else %>
+    <li><%= link_to "Add Artist", edit_song_path(song) %> - <%= link_to song.title, song_path(song) %></li>
+  <% end %>
 <% end %>
 </ul>
 <br>
