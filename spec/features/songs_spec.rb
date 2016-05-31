@@ -1,3 +1,4 @@
+require 'pry'
 describe "songs", type:  :feature do
 
   before do
