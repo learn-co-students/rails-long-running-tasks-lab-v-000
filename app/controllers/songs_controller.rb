@@ -16,6 +16,8 @@ class SongsController < ApplicationController
     redirect_to songs_path
   end
 
+  # hopefully github works
+
   def new
     @song = Song.new
   end
