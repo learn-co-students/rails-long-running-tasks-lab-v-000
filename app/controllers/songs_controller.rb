@@ -45,10 +45,15 @@ class SongsController < ApplicationController
     redirect_to songs_path
   end
 
+  def upload
+    Song.upload(params)
+    redirect_to songs_path
+  end
+
   private
 
   def song_params
-    params.require(:song).permit(:title, :artist_name)
+    params.require(:song).permit(:title, :artist_name, :songs)
   end
 end
 
