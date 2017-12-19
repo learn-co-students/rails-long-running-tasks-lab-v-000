@@ -38,10 +38,7 @@ class SongsController < ApplicationController
       render :edit
     end
   end
-
-#   Song Clean,ARTIST CLEAN,Release Year,COMBINED,First?,Year?,PlayCount,F*G
-# Caught Up in You,.38 Special,1982,Caught Up in You by .38 Special,1,1,82,82
-
+  
   def upload
     CSV.foreach(params[:file].path, headers: true) do |file|
       @artist = Artist.find_or_create_by(name: file[1])
