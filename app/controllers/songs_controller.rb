@@ -18,6 +18,7 @@ class SongsController < ApplicationController
     CSV.foreach(params[:file].path, headers: true) do |line|
       song = Song.create(title: line[0])
       song.artist = Artist.find_or_create_by(name: line[1])
+      song.save
     end
     redirect_to songs_path
   end
