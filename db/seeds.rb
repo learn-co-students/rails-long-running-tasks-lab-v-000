@@ -19,6 +19,6 @@ songs.each do |song|
   Song.create(song)
 end
 
-500.times do
-  Artist.find_or_create_by(name: Faker::Lorem.word).songs.create(title: Faker::Lorem.word)
-end
+#500.times do
+  #Artist.find_or_create_by(name: Faker::Lorem.word).songs.create(title: Faker::Lorem.word)
+#end

@@ -4,6 +4,15 @@ class SongsController < ApplicationController
     @songs = Song.all
   end
 
+  def upload
+    CSV.foreach(params[:file].path, headers: true) do |s|
+      #binding.pry
+      Song.create(title: s[0], artist_name: s[1])
+    end
+    #binding.pry
+    redirect_to songs_path
+  end
+
   def show
     @song = Song.find(params[:id])
   end
