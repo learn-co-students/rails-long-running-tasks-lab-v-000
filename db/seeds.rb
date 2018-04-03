@@ -6,6 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
+Song.destroy_all
+Artist.destroy_all
+
 songs = [{artist_name: "The Killers", title: "Mr. Brightside"},
          {artist_name: "The Killers", title: "Jenny Was a Friend of Mine"},
          {artist_name: "Tommy Tutone", title: "Jenny"},
@@ -19,6 +22,6 @@ songs.each do |song|
   Song.create(song)
 end
 
-500.times do
-  Artist.find_or_create_by(name: Faker::Lorem.word).songs.create(title: Faker::Lorem.word)
-end
+# 500.times do
+#   Artist.find_or_create_by(name: Faker::Lorem.word).songs.create(title: Faker::Lorem.word)
+# end
