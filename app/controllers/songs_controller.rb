@@ -15,7 +15,7 @@ require 'csv'
 
    def upload
       CSV.foreach(params["file"].path, headers: true) do |song|
-      Song.create(title: song[0], artist_id:  Artist.find_or_create_by(name: song[1]))
+      Song.create(title: song[0], artist_name: song[1])
     end
     redirect_to songs_path
   end
