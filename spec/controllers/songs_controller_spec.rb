@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+Capybara.ignore_hidden_elements = false
+
 RSpec.describe SongsController do
   describe "file upload" do
     before do
