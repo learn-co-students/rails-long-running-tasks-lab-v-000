@@ -37,6 +37,14 @@ class SongsController < ApplicationController
       render :edit
     end
   end
+    
+def upload
+    CSV.foreach(params[:file].path, headers: true) do |lead|
+      song = Song.create(title: lead[0])
+      song.create_artist(name: lead[1]) unless Artist.find_by(name: lead[1])
+    end
+    redirect_to songs_path
+end
 
   def destroy
     @song = Song.find(params[:id])
