@@ -1,4 +1,6 @@
 class ArtistsController < ApplicationController
+  require 'csv'
+  
   def index
   end
 
