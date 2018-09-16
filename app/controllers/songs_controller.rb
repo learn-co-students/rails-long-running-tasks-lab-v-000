@@ -44,7 +44,15 @@ class SongsController < ApplicationController
     flash[:notice] = "Song deleted."
     redirect_to songs_path
   end
-
+#Song Clean,ARTIST CLEAN,Release Year,COMBINED,First?,Year?,PlayCount,F*G
+  def upload
+    CSV.foreach(params[:songs].path, headers: true) do |song|
+      artist = Artist.find_or_create_by(:name => song[1])
+      Song.create(title: song[0], artist: artist)
+    end
+    redirect_to songs_path
+  end
+  
   private
 
   def song_params
