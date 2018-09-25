@@ -3,7 +3,7 @@ class SongsController < ApplicationController
 
   def upload
     CSV.foreach(params[:file].path, headers: true) do |row|
-      Song.create(title: row[0]).artist_name = row[1]
+      Song.create(title: row[0], artist_name: row[1])
     end
     redirect_to songs_path
   end
