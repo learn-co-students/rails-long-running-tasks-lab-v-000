@@ -20,5 +20,5 @@ songs.each do |song|
 end
 
 500.times do
-  Artist.find_or_create_by(name: Faker::Lorem.word).songs.create(title: Faker::Lorem.word)
+  Artist.find_or_create_by(name: Faker::Lorem.word).songs.build(title: Faker::Lorem.word).save
 end
