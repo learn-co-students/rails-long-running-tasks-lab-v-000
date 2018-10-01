@@ -1,4 +1,5 @@
 class SongsController < ApplicationController
+  require 'csv'
 
   def index
     @songs = Song.all
@@ -45,10 +46,18 @@ class SongsController < ApplicationController
     redirect_to songs_path
   end
 
+  def upload
+    # binding.pry
+    CSV.foreach(params[:file].path, headers: true) do |x|
+      Song.create(title: x[0], artist_name: x[1])
+    end
+    redirect_to songs_path
+  end
+
   private
 
   def song_params
-    params.require(:song).permit(:title, :artist_name)
+    params.require(:song).permit(:title, :artist_name, :files)
   end
 end
 
