@@ -1,10 +1,10 @@
 class SongsController < ApplicationController
+  require 'csv'
 
   def upload
-    CSV.foreach(params['file'].path, headers: true) do |song|
-      Song.create(
-        title: song[0],
-        artist_name: song[1])
+    CSV.foreach(params[:file].path, headers: true) do |song|
+      Song.create(title: song[0], artist_id: Artist.find_or_create_by(name: song[1]).id)
+      #Song Clean,ARTIST CLEAN,Release Year,COMBINED,First?,Year?,PlayCount,F*G
     end
     redirect_to songs_path
   end
