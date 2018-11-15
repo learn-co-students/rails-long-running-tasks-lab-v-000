@@ -7,10 +7,8 @@ class SongsController < ApplicationController
   end
 
   def upload
-    songs_file = params[:songs] || params[:file] # params[:file] to pass test
-
-    CSV.foreach(songs_file.path, headers: true) do |song|
-      Artist.find_or_create_by(name: song[1]).songs.find_or_create_by(title: song[0])
+    CSV.foreach(params[:file].path, headers: true) do |song|
+      Song.create(title: song[0], artist_name: song[1])
     end
 
     redirect_to songs_path
