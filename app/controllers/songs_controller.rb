@@ -1,7 +1,27 @@
 class SongsController < ApplicationController
+  require 'csv'
 
   def index
     @songs = Song.all
+  end
+
+  def upload
+
+    CSV.foreach(params[:file].path, headers: true) do |song|
+        #binding.pry
+      # if Song.find_by(title: song[0]) == nil
+      #   if Artist.find_by(name: song[1]) == nil
+      #     @artist = Artist.create(name: song[1])
+      #     @song = Song.create(title: song[0], artist_id: @artist.id)
+      #   else
+      #     @song = Song.create(title: song[0], artist_id: Artist.find_by(name: song[1]))
+      #   end
+      # end
+      @artist = Artist.find_or_create_by(name: song[1])
+      @song = Song.create(title: song[0], artist_id: @artist.id)
+
+    end
+    redirect_to songs_path
   end
 
   def show
@@ -51,4 +71,3 @@ class SongsController < ApplicationController
     params.require(:song).permit(:title, :artist_name)
   end
 end
-
