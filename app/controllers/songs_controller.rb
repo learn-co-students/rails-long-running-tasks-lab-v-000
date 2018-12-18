@@ -1,5 +1,6 @@
 class SongsController < ApplicationController
-
+  require 'csv'
+  
   def index
     @songs = Song.all
   end
@@ -42,6 +43,13 @@ class SongsController < ApplicationController
     @song = Song.find(params[:id])
     @song.destroy
     flash[:notice] = "Song deleted."
+    redirect_to songs_path
+  end
+  
+  def upload
+    CSV.foreach(params[:song_list].path, headers: true) do |list_song|
+      Song.create(list_song)
+    end
     redirect_to songs_path
   end
 
