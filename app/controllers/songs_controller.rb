@@ -1,3 +1,5 @@
+require 'pry'
+
 class SongsController < ApplicationController
   require 'csv'
   
@@ -47,7 +49,8 @@ class SongsController < ApplicationController
   end
   
   def upload
-    CSV.foreach(params[:song_list].path, headers: true) do |list_song|
+    # binding.pry
+    CSV.foreach(params[:file].path, headers: true) do |list_song|
       Song.create(list_song)
     end
     redirect_to songs_path
