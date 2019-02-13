@@ -9,7 +9,7 @@ class SongsController < ApplicationController
     #  i = 0
 
     CSV.foreach(params[:file].path, headers: true) do |song|
-      binding.pry
+      # binding.pry
      Song.create(title:song[0], artist_name:song[1] )
       # Song Clean,ARTIST CLEAN,Release Year,COMBINED,First?,Year?,PlayCount,F*G
 
