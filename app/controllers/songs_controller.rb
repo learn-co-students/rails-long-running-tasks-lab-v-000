@@ -5,18 +5,26 @@ class SongsController < ApplicationController
     @songs = Song.all
   end
  
+  # def upload
+  #   #  i = 0
+
+  #   CSV.foreach(params["file"].path, headers: true) do |song|
+  #     # binding.pry
+  #    Song.create(title:song[0], artist_name:song[1] )
+  #     # Song Clean,ARTIST CLEAN,Release Year,COMBINED,First?,Year?,PlayCount,F*G
+
+  #   end
+  #   redirect_to songs_path
+
+  # end
+
   def upload
-    #  i = 0
-
-    CSV.foreach(params[:file].path, headers: true) do |song|
-      # binding.pry
-     Song.create(title:song[0], artist_name:song[1] )
-      # Song Clean,ARTIST CLEAN,Release Year,COMBINED,First?,Year?,PlayCount,F*G
-
+    CSV.foreach(Rails.root.join("spec", "fixtures", "songs.csv"), headers: true) do |song|
+      Song.create(title: song[0], artist_name: song[1])
     end
     redirect_to songs_path
-
   end
+
 
   def show
     @song = Song.find(params[:id])
