@@ -37,13 +37,22 @@ class SongsController < ApplicationController
       render :edit
     end
   end
-
+  
   def destroy
     @song = Song.find(params[:id])
     @song.destroy
     flash[:notice] = "Song deleted."
     redirect_to songs_path
   end
+
+  def upload
+    CSV.foreach(params[:file].path, headers: true) do |song|
+      hold_song = Song.create(title: song[0])
+      hold_song.artist = Artist.find_or_create_by(name: song[1])
+    end
+   redirect_to songs_path 
+  end
+
 
   private
 
