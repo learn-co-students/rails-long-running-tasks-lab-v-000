@@ -5,7 +5,6 @@ class SongsController < ApplicationController
   end
 
   def upload
-    # binding.pry
     CSV.foreach(Rails.root.join("spec", "fixtures", params[:file]), headers: true) do |song|
       artist = Artist.find_or_create_by(name: song[1])
       Song.create(title: song[0], artist_id: artist.id)
