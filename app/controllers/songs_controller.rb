@@ -39,18 +39,18 @@ require 'csv'
   end
 
   def upload
-     CSV.foreach(params[:songs].path, headers: true) do |song|
+     CSV.foreach(params[:file].path, headers: true) do |song|
        artist = Artist.find_or_create_by(name: song[1])
        Song.create(title: song[0], artist_id: artist.id)
      end
-     redirect_to new_song_path
+     redirect_to songs_path
    end
 
   def destroy
     @song = Song.find(params[:id])
     @song.destroy
     flash[:notice] = "Song deleted."
-    redirect_to songs_path
+    redirect_to song_path(song)
   end
 
   private
