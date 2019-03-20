@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.describe SongsController do
   describe "file upload" do
     before do
