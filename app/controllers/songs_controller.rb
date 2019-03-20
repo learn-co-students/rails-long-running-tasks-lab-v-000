@@ -46,9 +46,6 @@ require 'csv'
      redirect_to new_song_path
    end
 
-
-
-
   def destroy
     @song = Song.find(params[:id])
     @song.destroy
