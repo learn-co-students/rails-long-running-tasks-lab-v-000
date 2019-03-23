@@ -4,6 +4,11 @@ class SongsController < ApplicationController
     @songs = Song.all
   end
 
+  def upload
+
+    redirect_to songs_path
+  end
+
   def show
     @song = Song.find(params[:id])
   end
