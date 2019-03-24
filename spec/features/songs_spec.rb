@@ -1,5 +1,7 @@
-describe "songs", type:  :feature do
+require 'pry'
 
+describe "songs", type:  :feature do
+  binding.pry
   before do
     Artist.destroy_all
     Song.destroy_all
