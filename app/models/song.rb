@@ -1,3 +1,4 @@
+require 'csv'
 class Song < ApplicationRecord
   belongs_to :artist
 
