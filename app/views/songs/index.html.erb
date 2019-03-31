@@ -1,6 +1,16 @@
 <ul>
+<%= form_tag upload_path, multipart: true do %>
+  <%= file_field_tag :file %>
+<%= submit_tag "Import Songs" %>
+<% end %>
 <% @songs.each do |song| %>
-  <li><%= display_artist(song) %> - <%= link_to song.title, song_path(song) %></li>
+  <li><%= display_artist(song) %>
+ <% if song.artist.nil? %>
+     - <%= link_to "Add Artist", edit_song_path(song)%>
+ <% else %>
+   - <%= link_to song.title, song_path(song) %>
+<% end %>
+  </li>
 <% end %>
 </ul>
 <br>
