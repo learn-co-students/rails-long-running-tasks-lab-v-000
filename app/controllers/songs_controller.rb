@@ -47,6 +47,7 @@ class SongsController < ApplicationController
 
   def upload
      CSV.foreach(params[:file].path, headers: true) do |lead|
+       binding.pry
        #Customer.create(email: lead[0], first_name: lead[1], last_name: lead[2])
      end
      redirect_to upload_path
