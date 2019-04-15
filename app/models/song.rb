@@ -1,5 +1,6 @@
 class Song < ApplicationRecord
   belongs_to :artist
+  validates :title, uniqueness: true
 
   def artist_name
     self.try(:artist).try(:name)
