@@ -8,6 +8,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'faker'
 gem 'listen'
+gem 'bootsnap'
+gem 'tzinfo-data'
+gem 'rb-readline', '~> 0.5.3'
 
 group :development, :test do
   gem 'pry'
