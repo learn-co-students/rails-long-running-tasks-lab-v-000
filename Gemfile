@@ -8,6 +8,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'faker'
 gem 'listen'
+# Added Gem due to error loading bootsnap/setup
+gem 'bootsnap', '~> 1.1.2'
 
 group :development, :test do
   gem 'pry'
