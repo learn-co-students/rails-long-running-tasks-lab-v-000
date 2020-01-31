@@ -47,14 +47,10 @@ class SongsController < ApplicationController
   end
 
   def upload
-    @song = Song.find_by(params[:id])
-
-    @song.update(song_params)
-
-    if @song.save
-      redirect_to @song
-    else
-      render :edit
+    CSV.foreach(params[:file].path, headers: true) do |file|
+      Song.create(title: file[0], name: lead[1], created_at: lead[2])
+    end
+      redirect_to songs_path
     end
   end
 
