@@ -1,4 +1,5 @@
 class SongsController < ApplicationController
+  require 'csv'
 
   def index
     @songs = Song.all
@@ -45,10 +46,21 @@ class SongsController < ApplicationController
     redirect_to songs_path
   end
 
+  def upload
+    @song = Song.find_by(params[:id])
+
+    @song.update(song_params)
+
+    if @song.save
+      redirect_to @song
+    else
+      render :edit
+    end
+  end
+
   private
 
   def song_params
     params.require(:song).permit(:title, :artist_name)
   end
 end
-
